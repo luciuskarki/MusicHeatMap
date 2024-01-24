@@ -1,2 +1,3 @@
 # musicHeatMap
-Lucius Karki (take 2)
+Lucius Karki
+Eddie Slobodow

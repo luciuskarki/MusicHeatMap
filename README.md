@@ -1,5 +1,5 @@
 # musicHeatMap
-Lucius Karki\n
-Eddie Slobodow\n
-Jan Ruiz\n
-Nicole Amaral\n
+Lucius Karki<br><\br>
+Eddie Slobodow<br><\br>
+Jan Ruiz<br><\br>
+Nicole Amaral<br><\br>

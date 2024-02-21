@@ -15,6 +15,9 @@ import {
   Text,
   useColorScheme,
   View,
+  Pressable,
+  Button,
+  Alert
 } from 'react-native';
 
 import {
@@ -71,25 +74,20 @@ function App(): React.JSX.Element {
       <ScrollView
         contentInsetAdjustmentBehavior="automatic"
         style={backgroundStyle}>
-        <Header />
         <View
           style={{
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}>
-          <Section title="Step One">
-            Edit <Text style={styles.highlight}>App.tsx</Text> to change this
-            screen and then come back to see your edits.
+          <Section title="Music Heat Map">
+            <View styles={styles.fixToText}>
+              <Button
+                onPress={() => Alert.alert('Not Implemented Yet')}
+                title="Click to View Map"
+                color="#841584"
+                accessibilityLabel="Learn more about this purple button"
+                />
+            </View>
           </Section>
-          <Section title="See Your Changes">
-            <ReloadInstructions />
-          </Section>
-          <Section title="Debug">
-            <DebugInstructions />
-          </Section>
-          <Section title="Learn More">
-            Read the docs to discover what to do next:
-          </Section>
-          <LearnMoreLinks />
         </View>
       </ScrollView>
     </SafeAreaView>

@@ -78,7 +78,7 @@ function HomeScreen() {
             style={{
               backgroundColor: isDarkMode ? Colors.black : Colors.white,
             }}>
-            <Section title="Step One">
+            <Section title="Step Two">
             </Section>
             <Section title="testing">
               blah

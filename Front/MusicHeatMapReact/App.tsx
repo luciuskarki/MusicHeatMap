@@ -1,15 +1,17 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
+//React Imports
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
+
+//Page Imports EG: Login Page, Profile Page ect...
+import LoginPage from "./LoginPage"
+
+
+
+//Button and Color Imports
 import {
   SafeAreaView,
   ScrollView,
@@ -18,6 +20,8 @@ import {
   Text,
   useColorScheme,
   View,
+  Button,
+  Alert
 } from 'react-native';
 
 import {
@@ -104,18 +108,30 @@ function SettingsScreen() {
   );
 }
 
+function ProfileScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Customize Your Profile!</Text>
+    </View>
+    
+  );
+}
+
 function MyTabs() {
   return (
     <Tab.Navigator>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
+      <Tab.Screen name="Profile" component={ProfileScreen} />
     </Tab.Navigator>
   );
 }
 
 
 
+
 function App(): React.JSX.Element {
+  //<LoginPage /> goes in navCont when wanting home page
   return (
     <NavigationContainer>
       <MyTabs />

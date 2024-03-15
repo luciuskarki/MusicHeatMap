@@ -11,6 +11,8 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import LoginPage from "./LoginPage"
 
 
+//adding this line for a reason i cannot disclose at this time
+
 
 //Button and Color Imports
 import {
@@ -24,7 +26,13 @@ const Tab = createBottomTabNavigator();
 function HomeScreen() {
     return (
           <View>
-            <Image source={require('./assets/map.png')} style={{height: 700, width: 'auto'}}></Image>
+            <Image source={require('./assets/map.png')}
+              style={{
+                resizeMode: 'contain'
+                
+              }}
+            >
+            </Image>
           </View>
     );
 }
@@ -42,46 +50,88 @@ function ProfileScreen() {
     <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
       <Text>Customize Your Profile!</Text>
     </View>
-    
   );
 }
 
 function MyTabs() {
   return (
     <Tab.Navigator screenOptions={{
-      tabBarStyle: {height: 120},
+      tabBarStyle: {
+        position: 'absolute',
+        height: 100,
+        bottom: 25,
+        left: 25,
+        right: 25,
+        elevation: 0,
+        borderRadius: 15,
+        backgroundColor: 'rgba(137, 196, 244, 1)'
+      },
+      tabBarShowLabel: false
     }}>
-      <Tab.Screen name="Home" component={HomeScreen} options={{
-        title: 'MAP!',
-        tabBarIcon:()=>{
-          return(
-            <Image style={{width: 'auto', height: "auto"}}
-            source={require('./assets/map.png')}>
-            </Image>
-          )
-        }}}/>
-      <Tab.Screen name="Settings" component={SettingsScreen} options={{
-        title: 'Settings',
-        tabBarIcon:({})=>{
-          return(
-            <Image style={{width: 'auto', height: "auto"}}
-            source={require('./assets/settingsicon.png')}>
-            </Image>
-          )
-        }
-      }
-    }/>
-      <Tab.Screen name="Profile" component={ProfileScreen} options={{
-        title: 'Profile',
-        tabBarIcon:({})=>{
-          return(
-            <Image style={{width: 'auto', height: "auto"}}
-            source={require('./assets/guy with headphones no music.jpg')}>
-            </Image>
-          )
-        }
-      }
-    }/>
+      <Tab.Screen name="Home"
+        component={HomeScreen} 
+        options={{
+          tabBarIcon:() => (
+            <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
+              <Image 
+              source={require('./assets/maybe_the_one.png')}
+              style={{
+                aspectRatio: '3/2',
+                width: 70,
+                height: 50
+              }}
+              >
+              </Image>
+              <Text>
+                Music Map!
+              </Text>
+            </View>
+            )
+        }}
+      />
+      <Tab.Screen 
+        name="Settings"
+        component={SettingsScreen} 
+        options={{
+          tabBarIcon:() => (
+            <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
+              <Image 
+              source={require('./assets/settingsicon.png')}
+              style={{
+                width: 50,
+                height: 50
+              }}
+              >
+              </Image>
+              <Text>
+                Settings
+              </Text>
+            </View>
+            )
+        }}
+    />
+      <Tab.Screen 
+        name="Profile"
+        component={ProfileScreen} 
+        options={{
+          tabBarIcon:() => (
+            <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
+              <Image 
+              source={require('./assets/best_profile_image.png')}
+              style={{
+                aspectRatio:'357/580',
+                width: 50,
+                height: 50
+              }}
+              >
+              </Image>
+              <Text>
+                Profile
+              </Text>
+            </View>
+            )
+        }}
+    />
     </Tab.Navigator>
   );
 }

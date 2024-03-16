@@ -3,6 +3,7 @@ import React from 'react';
 import type {PropsWithChildren} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
+import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
@@ -13,90 +14,18 @@ import LoginPage from "./LoginPage"
 
 //Button and Color Imports
 import {
-  SafeAreaView,
-  ScrollView,
-  StatusBar,
-  StyleSheet,
   Text,
-  useColorScheme,
-  View,
-  Button,
-  Alert
+  View
 } from 'react-native';
 
-import {
-  Colors,
-  Header,
-} from 'react-native/Libraries/NewAppScreen';
-
-type SectionProps = PropsWithChildren<{
-  title: string;
-}>;
 
 const Tab = createBottomTabNavigator();
 
-function Section({children, title}: SectionProps): React.JSX.Element {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-}
-
 function HomeScreen() {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
-
     return (
-      <SafeAreaView style={backgroundStyle}>
-        <StatusBar
-          barStyle={isDarkMode ? 'light-content' : 'dark-content'}
-          backgroundColor={backgroundStyle.backgroundColor}
-        />
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={backgroundStyle}>
-          <Header />
-          <View
-            style={{
-              backgroundColor: isDarkMode ? Colors.black : Colors.white,
-            }}>
-            <Section title="Step Two">
-            </Section>
-            <Section title="testing">
-              blah
-            </Section>
-            <Section title="See Your Changes">
-              blarg
-            </Section>
-            <Section title="Debug">
-            </Section>
-            <Section title="Learn More">
-            </Section>
+          <View>
+            <Image source={require('./assets/map.png')} style={{height: 700, width: 'auto'}}></Image>
           </View>
-        </ScrollView>
-      </SafeAreaView>
     );
 }
 
@@ -119,10 +48,40 @@ function ProfileScreen() {
 
 function MyTabs() {
   return (
-    <Tab.Navigator>
-      <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Settings" component={SettingsScreen} />
-      <Tab.Screen name="Profile" component={ProfileScreen} />
+    <Tab.Navigator screenOptions={{
+      tabBarStyle: {height: 120},
+    }}>
+      <Tab.Screen name="Home" component={HomeScreen} options={{
+        title: 'MAP!',
+        tabBarIcon:()=>{
+          return(
+            <Image style={{width: 'auto', height: "auto"}}
+            source={require('./assets/map.png')}>
+            </Image>
+          )
+        }}}/>
+      <Tab.Screen name="Settings" component={SettingsScreen} options={{
+        title: 'Settings',
+        tabBarIcon:({})=>{
+          return(
+            <Image style={{width: 'auto', height: "auto"}}
+            source={require('./assets/settingsicon.png')}>
+            </Image>
+          )
+        }
+      }
+    }/>
+      <Tab.Screen name="Profile" component={ProfileScreen} options={{
+        title: 'Profile',
+        tabBarIcon:({})=>{
+          return(
+            <Image style={{width: 'auto', height: "auto"}}
+            source={require('./assets/guy with headphones no music.jpg')}>
+            </Image>
+          )
+        }
+      }
+    }/>
     </Tab.Navigator>
   );
 }
@@ -138,24 +97,5 @@ function App(): React.JSX.Element {
     </NavigationContainer>
   ); 
 }
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 32,
-    paddingHorizontal: 24,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-});
 
 export default App;

@@ -1,8 +1,10 @@
 //React Imports
 import React from 'react';
 import { TextInput } from "react-native";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import Ionicons from 'react-native-vector-icons/Ionicons'
 //import Icon from 'react-native-vector-icons/FontAwesome' for later
-
+//color changes 
 //Button and Color Imports
 import {
   SafeAreaView,
@@ -13,7 +15,8 @@ import {
   useColorScheme,
   View,
   Button,
-  Alert
+  Alert,
+  TouchableOpacity
 } from 'react-native';
 
 
@@ -25,14 +28,28 @@ function LandingPage(){
           <Text style={styles.LoginText}>Login</Text>
             
           <View style={styles.inputContainer}>
-            <TextInput style ={styles.input}
-             placeholder="Enter Username" placeholderTextColor={'red'}>
-            </TextInput>
-
-            <TextInput style ={styles.input}
-            placeholder="Enter Password" placeholderTextColor={'red'}>
-            </TextInput>
-
+            <View style={styles.iconContainer}> 
+              <View style={styles.icon}> 
+                <Icon style={styles.iconStyle} name="user" size={60} color="black"/>
+              </View> 
+              <TextInput style ={styles.input}
+                placeholder="Enter Username" placeholderTextColor={textColor}>
+              </TextInput>
+            </View>
+            <View style={styles.iconContainer}>
+              <View style={styles.icon}>  
+                <Ionicons style={styles.iconStyle} name="eye" size={60} color="black"/>
+                </View> 
+              <TextInput style ={styles.input}
+                placeholder="Enter Password" placeholderTextColor={textColor}>
+              </TextInput>
+            </View>
+            <TouchableOpacity>
+              <Text style={styles.login}>Login</Text>
+            </TouchableOpacity>
+            <TouchableOpacity>
+              <Text style={styles.register}>Register</Text>
+            </TouchableOpacity>
           </View>
       </View>
     );
@@ -48,40 +65,83 @@ function LandingPage(){
     accessibilityLabel="Learn more about this purple button"
     /> */}
 
+    var textColor = "#52b788" //b864b9 pink 95d5b2 green
+    var bgColor = "#1b2021"
     const styles = StyleSheet.create({
       container: {
         flex: 1,
-        backgroundColor: 'white',
+        backgroundColor: bgColor,
         justifyContent: 'center',
         alignItems: 'center'
 
         },
         heading: {
           fontSize: 30,
-          paddingBottom: 100,
+          marginTop: 120,
           fontWeight: 'bold',
-          color: 'red',
+          color: textColor,
           justifyContent: 'center'
-
         },
         LoginText: {
+          marginTop: 150,
           fontSize: 25,
           marginBottom: 20,
           fontWeight: 'bold',
-          color: 'red',
+          color: textColor,
         },
         inputContainer:{
-          borderWidth: 1,
+
           marginBottom:300,
-          borderColor: 'red',
-          justifyContent: 'center'
+          borderColor: textColor,
+          padding: 5,
         },
         input:{
           flexDirection: 'row',
           width: '80%',
-          borderWidth: 1,
           padding: 10,
           fontSize: 20,
-          borderColor: 'red'
+          borderColor: textColor,
+          borderWidth: 1,
+          borderBottomRightRadius: 10,
+          borderTopStartRadius: 10, 
         },
+        iconContainer:{
+          flexDirection: 'row',
+          margin: 10,
+        },
+        icon:{
+          backgroundColor: textColor,
+          width: '20%',
+          height: 60,
+          borderTopLeftRadius: 10,
+          
+        },
+        iconStyle:{
+          marginTop: 2,
+          alignSelf: 'center'
+        },
+        login: {
+          fontSize: 30,
+          textAlign: 'center',
+          fontWeight: 'bold',
+          backgroundColor: textColor,
+          width: 150,
+          padding: 10,
+          color: bgColor,
+          borderRadius: 10,
+          alignSelf: 'center'
+        },
+        register: {
+          marginTop: 10,
+          fontSize: 30,
+          textAlign: 'center',
+          fontWeight: 'bold',
+          backgroundColor: textColor,
+          width: 150,
+          padding: 10,
+          color: bgColor,
+          borderRadius: 10,
+          alignSelf: 'center'
+        }
+        
     });

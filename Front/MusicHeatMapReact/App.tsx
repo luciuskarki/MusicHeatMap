@@ -5,7 +5,17 @@ import { NavigationContainer } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
+import {processColor, ProcessedColorValue, ViewProps} from 'react-native';
+/*import decorateMapComponent, {
+  MapManagerCommand,
+  NativeComponent,
+  ProviderContext,
+  SUPPORTED,
+  UIManagerCommand,
+  USES_DEFAULT_IMPLEMENTATION,
+} from './decorateMapComponent'; */
+import {LatLng} from './sharedTypes';
+import {Modify} from './sharedTypesInternal';
 
 //Page Imports EG: Login Page, Profile Page ect...
 import LoginPage from "./LoginPage"
@@ -23,9 +33,67 @@ import {
 
 const Tab = createBottomTabNavigator();
 
+export type MapHeatmapProps = ViewProps & {};
+
+type NativeProps = Modify<
+  MapHeatmapProps,
+  {
+    gradient?: Modify<
+      MapHeatmapProps['gradient'],
+      {colors: (ProcessedColorValue | null | undefined)[]}
+    >;
+  }
+> & {
+  ref: React.RefObject<View>;
+};
+/*
+export class MapHeatmap extends React.Component<MapHeatmapProps> {
+  // declaration only, as they are set through decorateMap
+  // declare context: React.ContextType<typeof ProviderContext>;
+  getNativeComponent!: () => NativeComponent<NativeProps>;
+  getMapManagerCommand!: (name: string) => MapManagerCommand;
+  getUIManagerCommand!: (name: string) => UIManagerCommand;
+
+  private heatmap: NativeProps['ref'];
+
+  constructor(props: MapHeatmapProps) {
+    super(props);
+    this.heatmap = React.createRef<View>();
+  }
+
+  setNativeProps(props: Partial<NativeProps>) {
+    this.heatmap.current?.setNativeProps(props);
+  }
+
+  render() {
+    const AIRMapHeatmap = this.getNativeComponent();
+    const propGradient = this.props.gradient;
+    let gradient: NativeProps['gradient'];
+    if (propGradient) {
+      const colors = propGradient.colors.map(c => processColor(c));
+      gradient = {...propGradient, colors};
+    }
+    return (
+      <AIRMapHeatmap {...this.props} gradient={gradient} ref={this.heatmap} />
+    );
+  }
+}
+
+export default decorateMapComponent(MapHeatmap, 'Heatmap', {
+  google: {
+    ios: SUPPORTED,
+    android: USES_DEFAULT_IMPLEMENTATION,
+  },
+});
+
+type WeightedLatLng = LatLng & {
+  weight?: number;
+};
+*/
 function HomeScreen() {
     return (
           <View>
+
             <Image source={require('./assets/map.png')}
               style={{
                 resizeMode: 'contain'

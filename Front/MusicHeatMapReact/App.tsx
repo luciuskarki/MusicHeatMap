@@ -3,9 +3,7 @@ import React from 'react';
 import type {PropsWithChildren} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import { Image } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-
 
 //Page Imports EG: Login Page, Profile Page ect...
 import LoginPage from "./src/screens/LoginScreens/LoginPage.tsx"
@@ -18,10 +16,121 @@ import LoginPage from "./src/screens/LoginScreens/LoginPage.tsx"
 import {
   Text,
   View,
+  Image,
+  StyleSheet,
+  FlatList,
+  FlatListComponent,
 } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
-
+const dummySongs = [
+  {
+    id: 1,
+    username: 'Karki',
+    title: 'Horse with no name',
+    artist: 'America',
+    genre: 'something'
+  },
+  {
+    id: 2,
+    username: 'Karki',
+    title: 'Im a gummy bear',
+    artist: 'gummy bear',
+    genre: 'Best music ever'
+  },
+  {
+    id: 3,
+    username: 'Karki',
+    title: 'Sweden',
+    artist: 'C418',
+    genre: 'Minecraft'
+  },
+  
+  {
+    id: 4,
+    username: 'Karki',
+    title: 'Sweden',
+    artist: 'C418',
+    genre: 'Minecraft'
+  },
+  {
+    id: 5,
+    username: 'Karki',
+    title: 'Sweden',
+    artist: 'C418',
+    genre: 'Minecraft'
+  },
+  {
+    id: 6,
+    username: 'Karki',
+    title: 'Sweden',
+    artist: 'C418',
+    genre: 'Minecraft'
+  },
+  {
+    id: 7,
+    username: 'Karki',
+    title: 'Sweden',
+    artist: 'C418',
+    genre: 'Minecraft'
+  }
+  
+]
 const Tab = createBottomTabNavigator();
+
+function HistoryElement(){
+  const songArray = dummySongs.map(dummySongs =>
+    <View key={dummySongs.id} style={{
+      alignItems: 'center',
+      justifyContent: 'center',
+      padding: 5,
+    }}>
+      <View
+      style={{
+        flexDirection: 'row',
+        borderColor: 'black',
+        borderWidth: 2,
+        borderRadius: 10,
+        padding: 10,
+      }}>
+          <View style={{
+            flex:3
+          }}>
+            <Text style={styles.HistoryText}>
+              {dummySongs.username}
+            </Text>
+            <Text style={styles.HistoryText}>
+              {dummySongs.title}
+            </Text>
+            <Text style={styles.HistoryText}>
+              {dummySongs.artist}
+            </Text>
+            <Text style={styles.HistoryText}>
+              {dummySongs.genre}
+            </Text>
+          </View>
+          <View style={{
+              alignContent: 'center',
+              flexDirection: 'row',
+              flex:1
+            }}>
+              <Image 
+              source={require('./assets/settingsicon.png')}
+              style={{
+                width:100,
+                height:100
+              }}>
+              </Image>
+          </View>
+    </View>
+  </View>
+    )
+  return (
+      <View>
+      {songArray}
+      </View>
+  )
+}
 
 function HomeScreen() {
     return (
@@ -53,13 +162,13 @@ function ProfileScreen() {
   );
 }
 
-function ListenHistoryScreen() {
+function HistoryScreen() {
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>Listen History!!!</Text>
-    </View>
+    <HistoryElement>
+    </HistoryElement>
   );
 }
+
 
 function MyTabs() {
   return (
@@ -67,11 +176,7 @@ function MyTabs() {
       tabBarStyle: {
         position: 'absolute',
         height: 100,
-        bottom: 25,
-        left: 10,
-        right: 10,
         elevation: 0,
-        borderRadius: 15,
         backgroundColor: 'rgba(137, 196, 244, 1)'
       },
       tabBarShowLabel: false
@@ -79,6 +184,7 @@ function MyTabs() {
       <Tab.Screen name="Map"
         component={HomeScreen} 
         options={{
+          headerShown: false,
           tabBarIcon:() => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image 
@@ -97,9 +203,10 @@ function MyTabs() {
             )
         }}
       />
-      <Tab.Screen name="Listen History"
-        component={ListenHistoryScreen} 
+      <Tab.Screen name="History"
+        component={HistoryScreen} 
         options={{
+          headerShown: false,
           tabBarIcon:() => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image 
@@ -112,7 +219,7 @@ function MyTabs() {
               >
               </Image>
               <Text>
-                Listen History
+                History
               </Text>
             </View>
             )
@@ -122,6 +229,7 @@ function MyTabs() {
         name="Settings"
         component={SettingsScreen} 
         options={{
+          headerShown: false,
           tabBarIcon:() => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image 
@@ -144,6 +252,7 @@ function MyTabs() {
         name="Profile"
         component={ProfileScreen} 
         options={{
+          headerShown: false,
           tabBarIcon:() => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image 
@@ -167,7 +276,15 @@ function MyTabs() {
 }
 
 
-
+const styles = StyleSheet.create({
+  HistoryText: {
+    fontSize: 20,
+  },
+  titleText: {
+    fontSize: 20,
+    fontWeight: 'bold',
+  },
+});
 
 function App(): React.JSX.Element {
   //<LoginPage /> <MyTabs /> goes in navCont when wanting home page

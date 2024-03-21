@@ -8,7 +8,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 
 //Page Imports EG: Login Page, Profile Page ect...
-import LoginPage from "./LoginPage"
+import LoginPage from "./src/screens/LoginScreens/LoginPage.tsx"
 
 
 //adding this line for a reason i cannot disclose at this time
@@ -26,7 +26,7 @@ const Tab = createBottomTabNavigator();
 function HomeScreen() {
     return (
           <View>
-            <Image source={require('./assets/map.png')}
+            <Image source={require('./src/assets/map.png')}
               style={{
                 resizeMode: 'contain'
                 
@@ -74,7 +74,7 @@ function MyTabs() {
           tabBarIcon:() => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image 
-              source={require('./assets/maybe_the_one.png')}
+              source={require('./src/assets/maybe_the_one.png')}
               style={{
                 aspectRatio: '3/2',
                 width: 70,
@@ -96,7 +96,7 @@ function MyTabs() {
           tabBarIcon:() => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image 
-              source={require('./assets/settingsicon.png')}
+              source={require('./src/assets/settingsicon.png')}
               style={{
                 width: 50,
                 height: 50
@@ -117,7 +117,7 @@ function MyTabs() {
           tabBarIcon:() => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image 
-              source={require('./assets/best_profile_image.png')}
+              source={require('./src/assets/best_profile_image.png')}
               style={{
                 aspectRatio:'357/580',
                 width: 50,

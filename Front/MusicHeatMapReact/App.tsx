@@ -3,9 +3,11 @@ import React from 'react';
 import type {PropsWithChildren} from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import { Image } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import {processColor, ProcessedColorValue, ViewProps} from 'react-native';
+import MapView, { Marker }  from 'react-native-maps';
+import { PROVIDER_GOOGLE }  from 'react-native-maps';
 /*import decorateMapComponent, {
   MapManagerCommand,
   NativeComponent,
@@ -25,10 +27,6 @@ import LoginPage from "./LoginPage"
 
 
 //Button and Color Imports
-import {
-  Text,
-  View
-} from 'react-native';
 
 
 const Tab = createBottomTabNavigator();
@@ -46,7 +44,7 @@ type NativeProps = Modify<
 > & {
   ref: React.RefObject<View>;
 };
-/*
+
 export class MapHeatmap extends React.Component<MapHeatmapProps> {
   // declaration only, as they are set through decorateMap
   // declare context: React.ContextType<typeof ProviderContext>;
@@ -78,29 +76,46 @@ export class MapHeatmap extends React.Component<MapHeatmapProps> {
     );
   }
 }
-
+/*
 export default decorateMapComponent(MapHeatmap, 'Heatmap', {
   google: {
     ios: SUPPORTED,
     android: USES_DEFAULT_IMPLEMENTATION,
   },
 });
-
+*/
 type WeightedLatLng = LatLng & {
   weight?: number;
 };
-*/
+
+const styles = StyleSheet.create({
+  container: {
+    ...StyleSheet.absoluteFillObject,
+       height: 400,
+       width: 400,
+       justifyContent: 'flex-end',
+       alignItems: 'center',
+  },
+  map: {
+    ...StyleSheet.absoluteFillObject,
+  },
+});
+
 function HomeScreen() {
     return (
           <View>
+            <MapView
+                    provider={PROVIDER_GOOGLE}
+                    style={styles.map}
+                    initialRegion={
+                      latitude: 37.78825,
+                      longitude: -122.4324,
+                      latitudeDelta: 0.0922,
+                      longitudeDelta: 0.0421,
+                    }
+                  >
+            </MapView>
 
-            <Image source={require('./assets/map.png')}
-              style={{
-                resizeMode: 'contain'
-                
-              }}
-            >
-            </Image>
           </View>
     );
 }

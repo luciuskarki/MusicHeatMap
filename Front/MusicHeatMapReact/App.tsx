@@ -103,7 +103,7 @@ function MyTabs() {
           tabBarIcon:() => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image 
-              source={require('./assets/listen_history_icon.png')}
+              source={require('./src/assets/listen_history_icon.png')}
               style={{
                 aspectRatio: '456/470',
                 width: 50,
@@ -147,7 +147,7 @@ function MyTabs() {
           tabBarIcon:() => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image 
-              source={require('./assets/even_thicker_line_profile_image.png')}
+              source={require('./src/assets/even_thicker_line_profile_image.png')}
               style={{
                 aspectRatio:'9/16',
                 width: 50,
@@ -173,7 +173,7 @@ function App(): React.JSX.Element {
   //<LoginPage /> <MyTabs /> goes in navCont when wanting home page
   return (
     <NavigationContainer>
-      <LoginPage />
+      <MyTabs />
     </NavigationContainer>
   ); 
 }

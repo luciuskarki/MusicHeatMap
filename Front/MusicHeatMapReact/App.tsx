@@ -115,7 +115,7 @@ function HistoryElement(){
               flex:1
             }}>
               <Image 
-              source={require('./assets/settingsicon.png')}
+              source={require('./src/assets/settingsicon.png')}
               style={{
                 width:100,
                 height:100
@@ -290,7 +290,7 @@ function App(): React.JSX.Element {
   //<LoginPage /> <MyTabs /> goes in navCont when wanting home page
   return (
     <NavigationContainer>
-      <MyTabs />
+      <LoginPage />
     </NavigationContainer>
   ); 
 }

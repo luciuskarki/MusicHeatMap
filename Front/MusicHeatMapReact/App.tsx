@@ -17,7 +17,7 @@ import LoginPage from "./LoginPage"
 //Button and Color Imports
 import {
   Text,
-  View
+  View,
 } from 'react-native';
 
 
@@ -28,8 +28,8 @@ function HomeScreen() {
           <View>
             <Image source={require('./assets/map.png')}
               style={{
-                resizeMode: 'contain'
-                
+                resizeMode: 'contain',
+                aspectRatio: '435/648'
               }}
             >
             </Image>
@@ -53,6 +53,14 @@ function ProfileScreen() {
   );
 }
 
+function ListenHistoryScreen() {
+  return (
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>Listen History!!!</Text>
+    </View>
+  );
+}
+
 function MyTabs() {
   return (
     <Tab.Navigator screenOptions={{
@@ -60,15 +68,15 @@ function MyTabs() {
         position: 'absolute',
         height: 100,
         bottom: 25,
-        left: 25,
-        right: 25,
+        left: 10,
+        right: 10,
         elevation: 0,
         borderRadius: 15,
         backgroundColor: 'rgba(137, 196, 244, 1)'
       },
       tabBarShowLabel: false
     }}>
-      <Tab.Screen name="Home"
+      <Tab.Screen name="Map"
         component={HomeScreen} 
         options={{
           tabBarIcon:() => (
@@ -89,6 +97,27 @@ function MyTabs() {
             )
         }}
       />
+      <Tab.Screen name="Listen History"
+        component={ListenHistoryScreen} 
+        options={{
+          tabBarIcon:() => (
+            <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
+              <Image 
+              source={require('./assets/listen_history_icon.png')}
+              style={{
+                aspectRatio: '456/470',
+                width: 50,
+                height: 50
+              }}
+              >
+              </Image>
+              <Text>
+                Listen History
+              </Text>
+            </View>
+            )
+        }}
+      />
       <Tab.Screen 
         name="Settings"
         component={SettingsScreen} 
@@ -98,6 +127,7 @@ function MyTabs() {
               <Image 
               source={require('./assets/settingsicon.png')}
               style={{
+                aspectRatio: '512/512',
                 width: 50,
                 height: 50
               }}
@@ -117,9 +147,9 @@ function MyTabs() {
           tabBarIcon:() => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image 
-              source={require('./assets/best_profile_image.png')}
+              source={require('./assets/even_thicker_line_profile_image.png')}
               style={{
-                aspectRatio:'357/580',
+                aspectRatio:'9/16',
                 width: 50,
                 height: 50
               }}

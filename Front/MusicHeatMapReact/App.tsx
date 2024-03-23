@@ -12,7 +12,6 @@ import LoginPage from "./LoginPage"
 //adding this line for a reason i cannot disclose at this time
 
 
-//Button and Color Imports
 import {
   Text,
   View,
@@ -21,7 +20,6 @@ import {
   FlatList,
   FlatListComponent,
 } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
 
 const dummySongs = [
   {
@@ -142,6 +140,9 @@ function HomeScreen() {
               }}
             >
             </Image>
+            <View>
+              
+            </View>
           </View>
     );
 }
@@ -182,7 +183,7 @@ function MyTabs() {
       tabBarShowLabel: false
     }}>
       <Tab.Screen name="Map"
-        component={HomeScreen} 
+        component={HomeScreen}
         options={{
           headerShown: false,
           tabBarIcon:() => (

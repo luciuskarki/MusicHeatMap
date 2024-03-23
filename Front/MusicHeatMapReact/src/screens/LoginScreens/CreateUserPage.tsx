@@ -1,8 +1,11 @@
 //React Imports
+ReactNativeFirebase
 import React from 'react';
 import { TextInput } from "react-native";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Ionicons from 'react-native-vector-icons/Ionicons'
+import auth from '@react-native-firebase/auth';
+import { useState } from 'react';
 //import Icon from 'react-native-vector-icons/FontAwesome' for later
 //color changes 
 //Button and Color Imports
@@ -18,33 +21,57 @@ import {
   Alert,
   TouchableOpacity
 } from 'react-native';
+import { ReactNativeFirebase } from '@react-native-firebase/app';
 
 
 function LandingPage(){
+  
+  //control inputs
+  const  [email, setEmail] = useState("")
+  const  [password, setPassword] = useState("")
+  const  [confirmPassword, setConfirmPassword] = useState("")
 
+  const createUser = () => {
+    auth().createUserWithEmailAndPassword(email, password).then(()=>{
+      Alert.alert("Successfully Created.")
+      console.log('User account created & signed in!');
+    })
+    .catch(error => {
+      if (error.code === 'auth/email-already-in-use') {
+        console.log('That email address is already in use!');
+      }
+  
+      if (error.code === 'auth/invalid-email') {
+        console.log('That email address is invalid!');
+      }
+  
+      console.error(error);
+    });
+  }
     return (
       <View style={styles.container} >
           <Text style={styles.heading}>Welcome to HeatMaps</Text>
-          <Text style={styles.LoginText}>Login</Text>
-            
+          <Text style={styles.LoginText}>Register</Text>
+          
           <View style={styles.inputContainer}>
             <View style={styles.iconContainer}> 
               <View style={styles.icon}> 
                 <Icon style={styles.iconStyle} name="user" size={60} color="black"/>
               </View> 
-              <TextInput style ={styles.input}
+              <TextInput value={email} onChangeText={text => setEmail(text)} style ={styles.input}
                 placeholder="Enter Username" placeholderTextColor={textColor}>
               </TextInput>
             </View>
+
             <View style={styles.iconContainer}>
               <View style={styles.icon}>  
                 <Ionicons style={styles.iconStyle} name="eye" size={60} color="black"/>
-                </View> 
-              <TextInput style ={styles.input}
-                placeholder="Enter Password" placeholderTextColor={textColor}>
+              </View> 
+              <TextInput value={password} onChangeText={text => setPassword(text)} style ={styles.input}
+                placeholder="Enter Password" secureTextEntry placeholderTextColor={textColor}>
               </TextInput>
             </View>
-            <TouchableOpacity>
+            <TouchableOpacity onPress={createUser}>
               <Text style={styles.login}>Login</Text>
             </TouchableOpacity>
             <TouchableOpacity>
@@ -56,14 +83,6 @@ function LandingPage(){
     
     }
     export default LandingPage
-
-
-       {/* <Button
-    onPress={() => Alert.alert('Simple Button pressed')}
-    title="Learn More"
-    color="#841584"
-    accessibilityLabel="Learn more about this purple button"
-    /> */}
 
     var textColor = "#52b788" //b864b9 pink 95d5b2 green
     var bgColor = "#1b2021"

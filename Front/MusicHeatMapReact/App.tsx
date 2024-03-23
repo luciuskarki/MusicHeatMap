@@ -6,7 +6,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 //Page Imports EG: Login Page, Profile Page ect...
-import LoginPage from "./LoginPage"
+import LoginPage from "./src/screens/LoginScreens/LoginPage.tsx"
 
 
 //adding this line for a reason i cannot disclose at this time
@@ -115,7 +115,7 @@ function HistoryElement(){
               flex:1
             }}>
               <Image 
-              source={require('./assets/settingsicon.png')}
+              source={require('./src/assets/settingsicon.png')}
               style={{
                 width:100,
                 height:100
@@ -135,7 +135,7 @@ function HistoryElement(){
 function HomeScreen() {
     return (
           <View>
-            <Image source={require('./assets/map.png')}
+            <Image source={require('./src/assets/map.png')}
               style={{
                 resizeMode: 'contain',
                 aspectRatio: '435/648'
@@ -188,7 +188,7 @@ function MyTabs() {
           tabBarIcon:() => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image 
-              source={require('./assets/maybe_the_one.png')}
+              source={require('./src/assets/maybe_the_one.png')}
               style={{
                 aspectRatio: '3/2',
                 width: 70,
@@ -210,7 +210,7 @@ function MyTabs() {
           tabBarIcon:() => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image 
-              source={require('./assets/listen_history_icon.png')}
+              source={require('./src/assets/listen_history_icon.png')}
               style={{
                 aspectRatio: '456/470',
                 width: 50,
@@ -233,7 +233,7 @@ function MyTabs() {
           tabBarIcon:() => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image 
-              source={require('./assets/settingsicon.png')}
+              source={require('./src/assets/settingsicon.png')}
               style={{
                 aspectRatio: '512/512',
                 width: 50,
@@ -256,7 +256,7 @@ function MyTabs() {
           tabBarIcon:() => (
             <View style={{alignItems: 'center', justifyContent: 'center', top: 10}}>
               <Image 
-              source={require('./assets/even_thicker_line_profile_image.png')}
+              source={require('./src/assets/even_thicker_line_profile_image.png')}
               style={{
                 aspectRatio:'9/16',
                 width: 50,
@@ -287,10 +287,10 @@ const styles = StyleSheet.create({
 });
 
 function App(): React.JSX.Element {
-  //<LoginPage /> goes in navCont when wanting home page
+  //<LoginPage /> <MyTabs /> goes in navCont when wanting home page
   return (
     <NavigationContainer>
-      <MyTabs />
+      <LoginPage />
     </NavigationContainer>
   ); 
 }

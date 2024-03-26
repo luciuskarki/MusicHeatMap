@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
 
 function HomeScreen() {
     return (
-          <View>
+          <View style={styles.container}>
             <MapView
                     provider={PROVIDER_GOOGLE}
                     style={styles.map}
